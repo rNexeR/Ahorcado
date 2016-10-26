@@ -13,5 +13,9 @@ public class Turn {
 
     public Turn(PlayersCollection players) {
     }
+
+    Player getCurrentPlayer() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
 }
