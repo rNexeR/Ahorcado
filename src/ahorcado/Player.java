@@ -9,8 +9,10 @@ package ahorcado;
  *
  * @author rnexer
  */
-public interface Player {
+public class Player {
 
-    public void incrementScore(boolean completed);
+    public void incrementScore(boolean completed){
+        
+    }
     
 }

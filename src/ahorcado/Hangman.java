@@ -15,7 +15,7 @@ public class Hangman {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        PlayersCollection players = new PlayersConsoleCollection();
+        PlayersCollection players = new Players();
         FileWordReader fileWordReader = new FileWordReader("hangman.hm");
         
         Game game = new Game(players,fileWordReader,new ConsoleUserInput(), new ConsoleUserOutput());

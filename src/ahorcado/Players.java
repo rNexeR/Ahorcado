@@ -9,9 +9,9 @@ package ahorcado;
  *
  * @author rnexer
  */
-public class PlayersConsoleCollection implements PlayersCollection {
+public class Players implements PlayersCollection {
 
-    public PlayersConsoleCollection() {
+    public Players() {
     }
 
     @Override
