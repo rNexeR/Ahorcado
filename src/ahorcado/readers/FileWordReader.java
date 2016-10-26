@@ -3,23 +3,23 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package ahorcado;
+package ahorcado.readers;
+
+import ahorcado.turns.Turn;
+import ahorcado.words.Word;
 
 /**
  *
  * @author kenystev
  */
-public class Word {
+public class FileWordReader implements WordReader{
 
-    boolean match(char nextChar) {
+    public FileWordReader(String hangmanhm) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    boolean isNotCompleted() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    boolean isCompleted() {
+    @Override
+    public Word getWord(Turn turn) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     

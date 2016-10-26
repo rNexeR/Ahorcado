@@ -3,16 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package ahorcado;
+package ahorcado.enums;
 
 /**
  *
- * @author rnexer
+ * @author kenystev
  */
-public class Player {
-
-    public void incrementScore(boolean completed){
-        
-    }
-    
+public enum OPTION_MENU {
+    PLAY, CONTINUE, SCORE, STATISTICS, EXIT
 }

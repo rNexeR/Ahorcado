@@ -3,16 +3,16 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package ahorcado;
+package ahorcado.players;
 
 /**
  *
- * @author kenystev
+ * @author rnexer
  */
-interface UserInput {
+public interface PlayersCollection {
 
-    public char getNextChar();
+    void init();
 
-    public OPTION_MENU getOptionSelected();
+    public int getCount();
     
 }

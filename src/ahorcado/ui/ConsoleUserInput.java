@@ -3,19 +3,24 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package ahorcado;
+package ahorcado.ui;
+
+import ahorcado.enums.OPTION_MENU;
+
 
 /**
  *
- * @author rnexer
+ * @author kenystev
  */
-public class Players implements PlayersCollection {
+public class ConsoleUserInput implements UserInput {
 
-    public Players() {
+    @Override
+    public char getNextChar() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public void init() {
+    public OPTION_MENU getOptionSelected() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     

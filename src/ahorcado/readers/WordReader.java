@@ -3,16 +3,17 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package ahorcado;
+package ahorcado.readers;
+
+import ahorcado.turns.Turn;
+import ahorcado.words.Word;
 
 /**
  *
- * @author kenystev
+ * @author rnexer
  */
-public interface UserOutput {
+public interface WordReader {
 
-    public void showErrorMessage(String message);
-
-    public void showMainMenu();
+    public Word getWord(Turn turn);
     
 }

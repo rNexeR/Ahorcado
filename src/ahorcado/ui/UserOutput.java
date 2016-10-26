@@ -3,15 +3,16 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package ahorcado;
+package ahorcado.ui;
 
 /**
  *
  * @author kenystev
  */
-class ConsoleUserOutput implements UserOutput {
+public interface UserOutput {
 
-    public ConsoleUserOutput() {
-    }
+    public void showErrorMessage(String message);
+
+    public void showMainMenu();
     
 }

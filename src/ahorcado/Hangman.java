@@ -5,6 +5,12 @@
  */
 package ahorcado;
 
+import ahorcado.players.PlayersCollection;
+import ahorcado.players.Players;
+import ahorcado.readers.FileWordReader;
+import ahorcado.ui.ConsoleUserOutput;
+import ahorcado.ui.ConsoleUserInput;
+
 /**
  *
  * @author rnexer

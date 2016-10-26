@@ -5,6 +5,15 @@
  */
 package ahorcado;
 
+import ahorcado.enums.OPTION_MENU;
+import ahorcado.turns.Turn;
+import ahorcado.words.Word;
+import ahorcado.readers.WordReader;
+import ahorcado.players.PlayersCollection;
+import ahorcado.players.Player;
+import ahorcado.ui.UserOutput;
+import ahorcado.ui.UserInput;
+
 /**
  *
  * @author rnexer

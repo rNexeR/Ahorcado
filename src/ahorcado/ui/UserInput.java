@@ -3,14 +3,18 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package ahorcado;
+package ahorcado.ui;
+
+import ahorcado.enums.OPTION_MENU;
 
 /**
  *
- * @author rnexer
+ * @author kenystev
  */
-public interface WordReader {
+public interface UserInput {
 
-    public Word getWord(Turn turn);
+    public char getNextChar();
+
+    public OPTION_MENU getOptionSelected();
     
 }
