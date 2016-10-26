@@ -10,5 +10,7 @@ package ahorcado;
  * @author rnexer
  */
 public interface Player {
+
+    public void incrementScore(boolean completed);
     
 }

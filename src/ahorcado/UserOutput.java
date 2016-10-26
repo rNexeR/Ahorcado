@@ -7,10 +7,12 @@ package ahorcado;
 
 /**
  *
- * @author rnexer
+ * @author kenystev
  */
-public interface WordReader {
+public interface UserOutput {
 
-    public Word getWord(Turn turn);
+    public void showErrorMessage(String message);
+
+    public void showMainMenu();
     
 }

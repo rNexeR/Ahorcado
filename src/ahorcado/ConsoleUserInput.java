@@ -7,10 +7,8 @@ package ahorcado;
 
 /**
  *
- * @author rnexer
+ * @author kenystev
  */
-public interface WordReader {
-
-    public Word getWord(Turn turn);
+public class ConsoleUserInput implements UserInput {
     
 }

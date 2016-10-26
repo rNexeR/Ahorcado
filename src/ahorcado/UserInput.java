@@ -7,10 +7,12 @@ package ahorcado;
 
 /**
  *
- * @author rnexer
+ * @author kenystev
  */
-public interface WordReader {
+interface UserInput {
 
-    public Word getWord(Turn turn);
+    public char getNextChar();
+
+    public OPTION_MENU getOptionSelected();
     
 }
