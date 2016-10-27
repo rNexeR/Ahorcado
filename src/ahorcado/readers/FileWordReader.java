@@ -19,7 +19,7 @@ public class FileWordReader implements WordReader{
     }
 
     @Override
-    public Word getWord() {
+    public Word getWord(Turn turn) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     

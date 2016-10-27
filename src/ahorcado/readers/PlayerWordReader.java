@@ -21,8 +21,8 @@ public class PlayerWordReader implements WordReader{
         this.word = word;
     }
     @Override
-    public Word getWord() {
-        return new Word(this.word.getWriteWord);
+    public Word getWord(Turn turn) {
+        return new Word(this.word.getWord);
     }
     
     
