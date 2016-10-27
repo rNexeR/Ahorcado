@@ -1,27 +1,30 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package ahorcado.players;
 
-/**
- *
- * @author rnexer
- */
+import java.util.ArrayList;
+
 public class Players implements PlayersCollection {
 
+    private ArrayList<Player> allPlayers;
+
     public Players() {
+        allPlayers = new ArrayList<Player>();
     }
 
     @Override
     public void init() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        for (Player player : allPlayers) {
+            player.init();
+        }
     }
 
     @Override
     public int getCount() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return allPlayers.size();
+    }
+
+    @Override
+    public void push(Player player) {
+        allPlayers.add(player);
     }
     
 }

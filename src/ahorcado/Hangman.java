@@ -5,6 +5,7 @@
  */
 package ahorcado;
 
+import ahorcado.players.Player;
 import ahorcado.players.PlayersCollection;
 import ahorcado.players.Players;
 import ahorcado.readers.FileWordReader;
@@ -22,6 +23,7 @@ public class Hangman {
      */
     public static void main(String[] args) {
         PlayersCollection players = new Players();
+        players.push(new Player("Keny"));
         FileWordReader fileWordReader = new FileWordReader("hangman.hm");
         
         Game game = new Game(players,fileWordReader,new ConsoleUserInput(), new ConsoleUserOutput());
