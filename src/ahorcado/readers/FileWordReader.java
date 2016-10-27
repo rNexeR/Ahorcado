@@ -26,7 +26,7 @@ public class FileWordReader implements WordReader{
     }
 
     @Override
-    public Word getWord(Turn turn) throws IOException {
+    public Word getWord() throws IOException {
         ArrayList<String> words = new ArrayList<>();
         FileReader file = new FileReader(filename);
         BufferedReader fileBuffer = new BufferedReader(file);

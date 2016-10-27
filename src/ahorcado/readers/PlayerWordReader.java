@@ -22,6 +22,8 @@ public class PlayerWordReader implements WordReader{
     }
 
     @Override
-    public Word getWord(Turn turn) throws IOException {
-    return new Word(this.wordTurn.getWord());}
+    public Word getWord() throws IOException {
+        wordTurn.readWord();
+        return new Word(wordTurn.getWord());
+    }
 }

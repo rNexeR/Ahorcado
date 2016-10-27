@@ -19,4 +19,6 @@ public interface PlayersCollection {
 
     public void push(Player player);
 
+    public ArrayList<Player> getAllPlayers();
+
 }

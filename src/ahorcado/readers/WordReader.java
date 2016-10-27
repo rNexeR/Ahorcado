@@ -15,6 +15,6 @@ import java.io.IOException;
  */
 public interface WordReader {
 
-    public Word getWord(Turn turn) throws IOException;
+    public Word getWord() throws IOException;
     
 }
