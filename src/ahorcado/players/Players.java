@@ -28,7 +28,12 @@ public class Players implements PlayersCollection {
     }
 
     @Override
-    public Player getPlayerI(int index) {
+    public ArrayList<Player> getAllPlayers() {
+        return allPlayers;
+    }
+    
+    @Override
+    public Player getPlayer(int index) {
         return allPlayers.get(index);
     }
 }

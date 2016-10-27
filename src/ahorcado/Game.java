@@ -13,12 +13,9 @@ import ahorcado.players.PlayersCollection;
 import ahorcado.players.Player;
 import ahorcado.ui.UserOutput;
 import ahorcado.ui.UserInput;
+import java.io.IOException;
 import java.util.ArrayList;
 
-/**
- *
- * @author rnexer
- */
 public class Game {
 
     private PlayersCollection players;
@@ -30,7 +27,7 @@ public class Game {
     private UserInput userInput;
     private UserOutput userOutput;
     private int fails;
-    private ArrayList<Character> inputChars;
+    private ArrayList<Character> inputChars = new ArrayList<>();
     
     public Game(PlayersCollection players, WordReader reader, UserInput userInput, UserOutput userOutput) {
         this.players = players;
@@ -46,10 +43,12 @@ public class Game {
     }
 
     void init() {
+        players.init();
         this.turn = new Turn(players);
+        turn.randomTurn();
     }
 
-    void play() {
+    void play() throws IOException {
         
         do{
             userOutput.showMainMenu();
@@ -61,12 +60,13 @@ public class Game {
 
     private void waitForLetters() {
         fails = maxFails;
-        
-        do{
-            
+        do{ 
+            userOutput.showMenu();
             OPTION_MENU OPTION = userInput.getMenuOptionSelected();
             validateCurrentOptions(OPTION);
-        } while(fails>0 || currentWord.isNotCompleted());
+            if (!currentWord.isNotCompleted())
+                userOutput.showMessage("You Won!");
+        } while(fails>0 && currentWord.isNotCompleted());
     }
 
     private void setWrongLetter(boolean match) {
@@ -74,21 +74,21 @@ public class Game {
             fails--;
     }
 
-    private void startToPlay() {
+    private void startToPlay() throws IOException {
         Player currentPlayer = turn.getCurrentPlayer();
-        //currentWord = reader.getWord(turn);
+        currentWord = reader.getWord();
         waitForLetters();
         currentPlayer.incrementScore(currentWord.isCompleted());
     }
 
     private void showScore() {
         for (int i = 0; i < players.getCount(); i++) {
-            Player currentPlayer = players.getPlayerI(i);
+            Player currentPlayer = players.getPlayer(i);
             System.out.println("Player: " + currentPlayer +"has completed " + currentPlayer.getCompletedWords() + "words.");
         }
     }
 
-    private void validateMainOption(OPTION_MENU OPTION) {
+    private void validateMainOption(OPTION_MENU OPTION) throws IOException {
         switch(OPTION){
             case PLAY: startToPlay(); break;
             case SCORE: showScore(); break;
@@ -110,15 +110,15 @@ public class Game {
         char nextChar = userInput.getNextChar();
         boolean matches = currentWord.match(nextChar);
         setWrongLetter(matches);
-        if (matches)
+        if (!matches && !inputChars.contains((Character)nextChar))
             inputChars.add((Character)nextChar);
     }
 
     private void showStatistics() {
-        for (int i = 0; i < inputChars.size()-1; i++) {
-            System.out.println("Current matched letters: " + inputChars.get(i));
+        for (int i = 0; i < inputChars.size(); i++) {
+            System.out.println("Current mismatched letters: " + inputChars.get(i));
         }
-        System.out.println("Amount of times failed: " + fails);
+        System.out.println("Amount of tries remaining: " + fails);
     }
     
 }

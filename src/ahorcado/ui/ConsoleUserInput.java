@@ -43,7 +43,7 @@ public class ConsoleUserInput implements UserInput {
             case 'b': return OPTION_MENU.SCORE;
             case 'c': return OPTION_MENU.EXIT;
         }
-        return OPTION_MENU.PLAY;
+        return OPTION_MENU.NONE;
     }
 
     @Override
@@ -54,7 +54,7 @@ public class ConsoleUserInput implements UserInput {
             case 'b': return OPTION_MENU.STATISTICS;
             case 'c': return OPTION_MENU.EXIT;
         }
-        return OPTION_MENU.CONTINUE;
+        return OPTION_MENU.NONE;
     }
     
 }

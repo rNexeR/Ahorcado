@@ -5,9 +5,9 @@
  */
 package ahorcado.readers;
 
-import ahorcado.turns.Turn;
 import ahorcado.words.Word;
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -26,10 +26,11 @@ public class FileWordReader implements WordReader{
     }
 
     @Override
-    public Word getWord(Turn turn) throws IOException {
+    public Word getWord() throws IOException {
         ArrayList<String> words = new ArrayList<>();
         FileReader file = new FileReader(filename);
         BufferedReader fileBuffer = new BufferedReader(file);
+        
         Random rnd = new Random();
         String word;
         
@@ -38,7 +39,7 @@ public class FileWordReader implements WordReader{
         }
         
         int posToSend = (int)(rnd.nextDouble() * words.size());
-        
+        //System.out.println(words.get(posToSend)); //delete
         return new Word(words.get(posToSend));
     }
     
