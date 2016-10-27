@@ -14,6 +14,6 @@ import ahorcado.words.Word;
  */
 public interface WordReader {
 
-    public Word getWord(Turn turn);
+    public Word getWord();
     
 }
