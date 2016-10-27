@@ -15,4 +15,6 @@ public interface UserOutput {
 
     public void showMainMenu();
     
+    public void showMenu();
+    
 }

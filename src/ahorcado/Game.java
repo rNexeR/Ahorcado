@@ -53,7 +53,7 @@ public class Game {
         
         do{
             userOutput.showMainMenu();
-            OPTION_MENU OPTION = userInput.getOptionSelected();
+            OPTION_MENU OPTION = userInput.getMainMenuOptionSelected();
 
             validateMainOption(OPTION);
         } while(!exit);
@@ -64,7 +64,7 @@ public class Game {
         
         do{
             
-            OPTION_MENU OPTION = userInput.getOptionSelected();
+            OPTION_MENU OPTION = userInput.getMenuOptionSelected();
             validateCurrentOptions(OPTION);
         } while(fails>0 || currentWord.isNotCompleted());
     }

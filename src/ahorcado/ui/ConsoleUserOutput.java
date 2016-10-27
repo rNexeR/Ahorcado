@@ -18,7 +18,15 @@ public class ConsoleUserOutput implements UserOutput {
     
     @Override
     public void showMainMenu() {
-        String[] menu = {"----Main Menu---","a) ----Play-----", "b) --Continue---", "c) ----Score----","d) -Statistics--", "e) ----Exit-----"};
+        String[] menu = {"----Main Menu---","a) ----Play-----", "b) ----Score----", "c) ----Exit-----"};
+        for (int i = 0; i< menu.length-1; i++) {
+            System.out.println(menu[i]);
+        }
+    }
+
+    @Override
+    public void showMenu() {
+        String[] menu = {"----Main Menu---", "a) --Continue---", "b) -Statistics--", "c) ----Exit-----"};
         for (int i = 0; i< menu.length-1; i++) {
             System.out.println(menu[i]);
         }
