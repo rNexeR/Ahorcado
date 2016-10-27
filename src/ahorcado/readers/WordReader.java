@@ -7,6 +7,7 @@ package ahorcado.readers;
 
 import ahorcado.turns.Turn;
 import ahorcado.words.Word;
+import java.io.IOException;
 
 /**
  *
@@ -14,6 +15,6 @@ import ahorcado.words.Word;
  */
 public interface WordReader {
 
-    public Word getWord(Turn turn);
+    public Word getWord(Turn turn) throws IOException;
     
 }
