@@ -29,3 +29,4 @@ project-root-directory/
 + src/
 + test/
 + build.xml
+/dist/

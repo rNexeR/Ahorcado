@@ -26,5 +26,10 @@ public class Players implements PlayersCollection {
     public void push(Player player) {
         allPlayers.add(player);
     }
+
+    @Override
+    public Player getPlayerI(int index) {
+        return allPlayers.get(index);
+    }
     
 }

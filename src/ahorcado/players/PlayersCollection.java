@@ -17,4 +17,6 @@ public interface PlayersCollection {
 
     public void push(Player player);
     
+    public Player getPlayerI(int index);
+    
 }
