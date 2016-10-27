@@ -31,5 +31,4 @@ public class Players implements PlayersCollection {
     public Player getPlayerI(int index) {
         return allPlayers.get(index);
     }
-    
 }

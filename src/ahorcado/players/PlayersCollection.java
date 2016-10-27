@@ -5,6 +5,8 @@
  */
 package ahorcado.players;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author rnexer
@@ -18,5 +20,5 @@ public interface PlayersCollection {
     public void push(Player player);
     
     public Player getPlayerI(int index);
-    
+
 }
