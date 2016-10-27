@@ -25,7 +25,7 @@ public class Turn {
         turnPlayer = 0;
         
     }
-    public void randomTurn(ArrayList<Player> allPlayers){
+    public void randomTurn(){
         Random rnd = new Random();
         int i=0;
         while(i<allPlayers.size()){

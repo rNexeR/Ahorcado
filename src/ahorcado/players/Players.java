@@ -31,4 +31,9 @@ public class Players implements PlayersCollection {
     public ArrayList<Player> getAllPlayers() {
         return allPlayers;
     }
+    
+    @Override
+    public Player getPlayer(int index) {
+        return allPlayers.get(index);
+    }
 }

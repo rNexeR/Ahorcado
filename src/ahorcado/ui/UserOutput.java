@@ -15,4 +15,8 @@ public interface UserOutput {
 
     public void showMainMenu();
     
+    public void showMenu();
+
+    public void showMessage(String you_Won);
+    
 }

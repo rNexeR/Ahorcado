@@ -14,11 +14,8 @@ import ahorcado.players.Player;
 import ahorcado.ui.UserOutput;
 import ahorcado.ui.UserInput;
 import java.io.IOException;
+import java.util.ArrayList;
 
-/**
- *
- * @author rnexer
- */
 public class Game {
 
     private PlayersCollection players;
@@ -30,6 +27,7 @@ public class Game {
     private UserInput userInput;
     private UserOutput userOutput;
     private int fails;
+    private ArrayList<Character> inputChars = new ArrayList<>();
     
     public Game(PlayersCollection players, WordReader reader, UserInput userInput, UserOutput userOutput) {
         this.players = players;
@@ -41,35 +39,38 @@ public class Game {
     }
     
     public void setMaxFails(int max_fails){
-        this.maxFails=max_fails;
+        this.maxFails = max_fails;
     }
 
     void init() {
+        players.init();
         this.turn = new Turn(players);
+        turn.randomTurn();
     }
 
     void play() throws IOException {
         
         do{
             userOutput.showMainMenu();
-            OPTION_MENU OPTION = userInput.getOptionSelected();
+            OPTION_MENU OPTION = userInput.getMainMenuOptionSelected();
 
             validateMainOption(OPTION);
-        }while(!exit);
+        } while(!exit);
     }
 
     private void waitForLetters() {
-        fails=maxFails;
-        
-        do{
+        fails = maxFails;
+        do{ 
             userOutput.showMenu();
-            OPTION_MENU OPTION = userInput.getOptionSelected();
+            OPTION_MENU OPTION = userInput.getMenuOptionSelected();
             validateCurrentOptions(OPTION);
-        }while(fails>0 || currentWord.isNotCompleted());
+            if (!currentWord.isNotCompleted())
+                userOutput.showMessage("You Won!");
+        } while(fails>0 && currentWord.isNotCompleted());
     }
 
     private void setWrongLetter(boolean match) {
-        if(!match)
+        if (!match)
             fails--;
     }
 
@@ -81,7 +82,10 @@ public class Game {
     }
 
     private void showScore() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        for (int i = 0; i < players.getCount(); i++) {
+            Player currentPlayer = players.getPlayer(i);
+            System.out.println("Player: " + currentPlayer +"has completed " + currentPlayer.getCompletedWords() + "words.");
+        }
     }
 
     private void validateMainOption(OPTION_MENU OPTION) throws IOException {
@@ -104,11 +108,17 @@ public class Game {
 
     private void getNextCharacter() {
         char nextChar = userInput.getNextChar();
-        setWrongLetter(currentWord.match(nextChar));
+        boolean matches = currentWord.match(nextChar);
+        setWrongLetter(matches);
+        if (!matches && !inputChars.contains((Character)nextChar))
+            inputChars.add((Character)nextChar);
     }
 
     private void showStatistics() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        for (int i = 0; i < inputChars.size(); i++) {
+            System.out.println("Current mismatched letters: " + inputChars.get(i));
+        }
+        System.out.println("Amount of tries remaining: " + fails);
     }
     
 }

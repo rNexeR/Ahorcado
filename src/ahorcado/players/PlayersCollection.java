@@ -18,6 +18,8 @@ public interface PlayersCollection {
     public int getCount();
 
     public void push(Player player);
+    
+    public Player getPlayer(int index);
 
     public ArrayList<Player> getAllPlayers();
 

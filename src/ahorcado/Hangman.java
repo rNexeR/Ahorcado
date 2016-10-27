@@ -11,6 +11,9 @@ import ahorcado.players.Players;
 import ahorcado.readers.FileWordReader;
 import ahorcado.ui.ConsoleUserOutput;
 import ahorcado.ui.ConsoleUserInput;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -28,7 +31,11 @@ public class Hangman {
         
         Game game = new Game(players,fileWordReader,new ConsoleUserInput(), new ConsoleUserOutput());
         game.init();
-        game.play();
+        try {
+            game.play();
+        } catch (IOException ex) {
+            System.out.println("Bad file name");
+        }
     }
     
 }

@@ -36,16 +36,25 @@ public class ConsoleUserInput implements UserInput {
 
 
     @Override
-    public OPTION_MENU getOptionSelected() {
+    public OPTION_MENU getMainMenuOptionSelected() {
         char c = keyboardReader.next().charAt(0);
         switch (c) {
             case 'a': return OPTION_MENU.PLAY;
-            case 'b': return OPTION_MENU.CONTINUE;
-            case 'c': return OPTION_MENU.SCORE;
-            case 'd': return OPTION_MENU.STATISTICS;
-            case 'e': return OPTION_MENU.EXIT;
+            case 'b': return OPTION_MENU.SCORE;
+            case 'c': return OPTION_MENU.EXIT;
         }
-        return OPTION_MENU.CONTINUE;
+        return OPTION_MENU.NONE;
+    }
+
+    @Override
+    public OPTION_MENU getMenuOptionSelected() {
+        char c = keyboardReader.next().charAt(0);
+        switch (c) {
+            case 'a': return OPTION_MENU.CONTINUE;
+            case 'b': return OPTION_MENU.STATISTICS;
+            case 'c': return OPTION_MENU.EXIT;
+        }
+        return OPTION_MENU.NONE;
     }
     
 }

@@ -10,5 +10,5 @@ package ahorcado.enums;
  * @author kenystev
  */
 public enum OPTION_MENU {
-    PLAY, CONTINUE, SCORE, STATISTICS, EXIT
+    PLAY, CONTINUE, SCORE, STATISTICS, EXIT, NONE
 }

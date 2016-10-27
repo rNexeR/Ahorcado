@@ -15,7 +15,9 @@ public interface UserInput {
 
     public char getNextChar();
 
-    public OPTION_MENU getOptionSelected();
+    public OPTION_MENU getMainMenuOptionSelected();
+    
+    public OPTION_MENU getMenuOptionSelected();
     
     public void readWord();
     
