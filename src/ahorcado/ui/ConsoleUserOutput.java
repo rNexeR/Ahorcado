@@ -10,18 +10,18 @@ package ahorcado.ui;
  * @author kenystev
  */
 public class ConsoleUserOutput implements UserOutput {
-
-    public ConsoleUserOutput() {
-    }
-
+    
     @Override
     public void showErrorMessage(String message) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        System.out.println(message);
     }
-
+    
     @Override
     public void showMainMenu() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        String[] menu = {"----Main Menu---","a) ----Play-----", "b) --Continue---", "c) ----Score----","d) -Statistics--", "e) ----Exit-----"};
+        for (int i = 0; i< menu.length-1; i++) {
+            System.out.println(menu[i]);
+        }
     }
     
 }

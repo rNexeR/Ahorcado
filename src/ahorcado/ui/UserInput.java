@@ -17,4 +17,8 @@ public interface UserInput {
 
     public OPTION_MENU getOptionSelected();
     
+    public void readWord();
+    
+    public String getWord();
+    
 }
