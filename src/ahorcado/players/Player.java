@@ -3,7 +3,7 @@ package ahorcado.players;
 public class Player {
 
     private final String name;
-    private int complitedWords;
+    private int completedWords;
 
     public Player(String name) {
         this.name = name;
@@ -11,11 +11,14 @@ public class Player {
 
     public void incrementScore(boolean completed){
         if(completed)
-            complitedWords++;
+            completedWords++;
     }
 
     void init() {
-        complitedWords=0;
+        completedWords=0;
     }
     
+    public int getCompletedWords() {
+        return completedWords;
+    }
 }

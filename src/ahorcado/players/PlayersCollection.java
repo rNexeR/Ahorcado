@@ -18,5 +18,7 @@ public interface PlayersCollection {
     public int getCount();
 
     public void push(Player player);
+    
+    public Player getPlayerI(int index);
 
 }
