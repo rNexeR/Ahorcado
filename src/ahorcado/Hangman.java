@@ -25,17 +25,36 @@ public class Hangman {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
+        Game game;
         PlayersCollection players = new Players();
-        players.push(new Player("Keny"));
-        FileWordReader fileWordReader = new FileWordReader("hangman.hm");
-        
-        Game game = new Game(players,fileWordReader,new ConsoleUserInput(), new ConsoleUserOutput());
-        game.init();
+        ConsoleUserOutput uo = new ConsoleUserOutput();
+        ConsoleUserInput ui = new ConsoleUserInput();
+        uo.showMessage("a)-----SP----------");
+        uo.showMessage("b)-----MP----------");        
+        switch (ui.getNextChar()) {
+            case 'a':
+                    players.push(new Player("Keny"));
+                    FileWordReader fileWordReader = new FileWordReader("hangman.hm");
+                    game = new Game(players,fileWordReader,new ConsoleUserInput(), new ConsoleUserOutput());
+                    setGame(game);
+                    break;
+            case 'b':
+                    players.push(new Player("P1"));
+                    players.push(new Player("P2"));
+                    game =  new Game(players, ui, uo);
+                    setGame(game);
+                    break;    
+            default:
+                uo.showMessage("Unexpected option!");
+        }
+    }
+    
+    static void setGame(Game game) {
+                game.init();
         try {
             game.play();
         } catch (IOException ex) {
             System.out.println("Bad file name");
         }
     }
-    
 }

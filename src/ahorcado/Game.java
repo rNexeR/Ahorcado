@@ -38,6 +38,14 @@ public class Game {
         this.maxFails=5;
     }
     
+    public Game(PlayersCollection players, UserInput userInput, UserOutput userOutput) {
+        this.players = players;
+        this.userInput = userInput;
+        this.userOutput = userOutput;
+        exit=false;
+        this.maxFails=5;
+    }
+    
     public void setMaxFails(int max_fails){
         this.maxFails = max_fails;
     }
