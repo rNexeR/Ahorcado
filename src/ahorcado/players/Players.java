@@ -27,5 +27,10 @@ public class Players implements PlayersCollection {
         allPlayers.add(player);
     }
 
+    @Override
+    public ArrayList<Player> getAllPlayers() {
+        return allPlayers;
+    }
+
     
 }
