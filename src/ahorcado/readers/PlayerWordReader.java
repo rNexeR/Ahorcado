@@ -15,13 +15,13 @@ import java.io.IOException;
  * @author Jose34mp
  */
 public class PlayerWordReader implements WordReader{
-    private UserInput word;
+    private UserInput wordTurn;
     
     public PlayerWordReader(UserInput word){
-        this.word = word;
+        this.wordTurn = word;
     }
 
     @Override
     public Word getWord(Turn turn) throws IOException {
-    return new Word(this.word.getWord());}
+    return new Word(this.wordTurn.getWord());}
 }
