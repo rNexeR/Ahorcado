@@ -13,7 +13,6 @@ import ahorcado.players.PlayersCollection;
 import ahorcado.players.Player;
 import ahorcado.ui.UserOutput;
 import ahorcado.ui.UserInput;
-import java.io.IOException;
 
 /**
  *
@@ -48,7 +47,7 @@ public class Game {
         this.turn = new Turn(players);
     }
 
-    void play() throws IOException {
+    void play() {
         
         do{
             userOutput.showMainMenu();
@@ -73,7 +72,7 @@ public class Game {
             fails--;
     }
 
-    private void startToPlay() throws IOException {
+    private void startToPlay() {
         Player currentPlayer = turn.getCurrentPlayer();
         currentWord = reader.getWord(turn);
         waitForLetters();
@@ -84,7 +83,7 @@ public class Game {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    private void validateMainOption(OPTION_MENU OPTION) throws IOException {
+    private void validateMainOption(OPTION_MENU OPTION) {
         switch(OPTION){
             case PLAY: startToPlay(); break;
             case SCORE: showScore(); break;
