@@ -27,24 +27,23 @@ public class Turn {
     }
     public void randomTurn(ArrayList<Player> allPlayers){
         Random rnd = new Random();
-        for(int i=0; i<allPlayers.size(); i++){
-            int temp = rnd.nextInt() * allPlayers.size();
+        int i=0;
+        while(i<allPlayers.size()){
+            int temp = (int)(rnd.nextDouble() * allPlayers.size()+0);
             if(!ifExist(allPlayers.get(temp))){
                 randomList.add(allPlayers.get(temp));
+                i++;
             }
         }
-        
     }
     private boolean ifExist(Player player){
-        for(int i=0; i<allPlayers.size(); i++){
-                if(player==randomList.get(i)){
+        if(randomList.contains(player)){
                     return true;
                 }
-        }
         return false;
     }
     public void nextTurn(){
-        if(turnPlayer<randomList.size()){
+        if(turnPlayer<randomList.size()-1){
             turnPlayer++;
         }else{
             turnPlayer = 0;

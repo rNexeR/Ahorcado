@@ -5,6 +5,8 @@
  */
 package ahorcado.players;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author rnexer

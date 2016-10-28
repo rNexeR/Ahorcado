@@ -26,5 +26,6 @@ public class Players implements PlayersCollection {
     public void push(Player player) {
         allPlayers.add(player);
     }
+
     
 }
