@@ -44,5 +44,16 @@ public class Word {
     public boolean isCompleted() {
         return !isNotCompleted();
     }
+
+    public String showProgress() {
+        String word="";
+        for (int i = 0; i < filled.length; i++) {
+            if(filled[i])
+                word+=name.charAt(i);
+            else
+                word+=" _ ";
+        }
+        return word;
+    }
     
 }

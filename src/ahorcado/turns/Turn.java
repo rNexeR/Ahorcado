@@ -19,12 +19,14 @@ public class Turn {
     private ArrayList <Player> allPlayers;
     private ArrayList<Player> randomList;
     private int turnPlayer;
+    
     public Turn(PlayersCollection players) {
         allPlayers = players.getAllPlayers();
         randomList = new ArrayList<Player>();
         turnPlayer = 0;
         
     }
+    
     public void randomTurn(){
         Random rnd = new Random();
         int i=0;
@@ -36,12 +38,11 @@ public class Turn {
             }
         }
     }
+    
     private boolean ifExist(Player player){
-        if(randomList.contains(player)){
-                    return true;
-                }
-        return false;
+        return randomList.contains(player);
     }
+    
     public void nextTurn(){
         if(turnPlayer<randomList.size()-1){
             turnPlayer++;
@@ -50,8 +51,9 @@ public class Turn {
         }
         
     }
+    
     public Player getCurrentPlayer() {
         return randomList.get(turnPlayer);
-}
+    }
     
 }

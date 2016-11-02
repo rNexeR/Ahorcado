@@ -3,12 +3,16 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package ahorcado.enums;
+package ahorcado.actions;
+
+import ahorcado.Game;
 
 /**
  *
  * @author kenystev
  */
-public enum OPTION_MENU {
-    PLAY, CONTINUE, SCORE, STATISTICS, SURRENDER, EXIT, NONE
+public interface Action {
+
+    void execute(Game game) throws Exception;
+    
 }

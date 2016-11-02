@@ -20,7 +20,7 @@ public class ConsoleUserInput implements UserInput {
     
     @Override
     public void readWord() {
-        word = keyboardReader.nextLine();
+        word = keyboardReader.next();
     }
     
     @Override
@@ -52,7 +52,7 @@ public class ConsoleUserInput implements UserInput {
         switch (c) {
             case 'a': return OPTION_MENU.CONTINUE;
             case 'b': return OPTION_MENU.STATISTICS;
-            case 'c': return OPTION_MENU.EXIT;
+            case 'c': return OPTION_MENU.SURRENDER;
         }
         return OPTION_MENU.NONE;
     }

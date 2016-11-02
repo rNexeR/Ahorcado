@@ -21,4 +21,9 @@ public class Player {
     public int getCompletedWords() {
         return completedWords;
     }
+
+    @Override
+    public String toString() {
+        return name;
+    }
 }

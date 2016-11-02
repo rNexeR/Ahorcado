@@ -9,6 +9,7 @@ import ahorcado.players.Player;
 import ahorcado.players.PlayersCollection;
 import ahorcado.players.Players;
 import ahorcado.readers.FileWordReader;
+import ahorcado.readers.PlayerWordReader;
 import ahorcado.ui.ConsoleUserOutput;
 import ahorcado.ui.ConsoleUserInput;
 import java.io.IOException;
@@ -21,40 +22,44 @@ import java.util.logging.Logger;
  */
 public class Hangman {
 
-    /**
-     * @param args the command line arguments
-     */
+    static Game game;
+    static PlayersCollection players = new Players();
+    static ConsoleUserOutput uo = new ConsoleUserOutput();
+    static ConsoleUserInput ui = new ConsoleUserInput();
+    
     public static void main(String[] args) {
-        Game game;
-        PlayersCollection players = new Players();
-        ConsoleUserOutput uo = new ConsoleUserOutput();
-        ConsoleUserInput ui = new ConsoleUserInput();
-        uo.showMessage("a)-----SP----------");
-        uo.showMessage("b)-----MP----------");        
+        setGame();
+        playGame();
+    }
+
+    static void setGame(){
+        uo.showMessage("a) Single Player");
+        uo.showMessage("b) Multiplayer");        
         switch (ui.getNextChar()) {
             case 'a':
-                    players.push(new Player("Keny"));
-                    FileWordReader fileWordReader = new FileWordReader("hangman.hm");
-                    game = new Game(players,fileWordReader,new ConsoleUserInput(), new ConsoleUserOutput());
-                    setGame(game);
-                    break;
+                players.push(new Player("Keny"));
+                game = new Game(players,new FileWordReader("hangman.hm"),ui, uo);
+                
+                break;
             case 'b':
-                    players.push(new Player("P1"));
-                    players.push(new Player("P2"));
-                    game =  new Game(players, ui, uo);
-                    setGame(game);
-                    break;    
+                players.push(new Player("P1"));
+                players.push(new Player("P2"));
+                game =  new Game(players, new PlayerWordReader(ui), ui, uo);
+                
+                break;    
             default:
                 uo.showMessage("Unexpected option!");
         }
     }
     
-    static void setGame(Game game) {
-                game.init();
+    static void playGame() {
+        game.init();
         try {
             game.play();
         } catch (IOException ex) {
             System.out.println("Bad file name");
+        } catch (Exception ex) {
+            Logger.getLogger(Hangman.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 }

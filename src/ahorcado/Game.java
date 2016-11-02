@@ -5,6 +5,9 @@
  */
 package ahorcado;
 
+import ahorcado.actions.ActionFactory;
+import ahorcado.actions.OptionNoValidException;
+import ahorcado.actions.Action;
 import ahorcado.enums.OPTION_MENU;
 import ahorcado.turns.Turn;
 import ahorcado.words.Word;
@@ -15,6 +18,8 @@ import ahorcado.ui.UserOutput;
 import ahorcado.ui.UserInput;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class Game {
 
@@ -29,17 +34,10 @@ public class Game {
     private int fails;
     private ArrayList<Character> inputChars = new ArrayList<>();
     
-    public Game(PlayersCollection players, WordReader reader, UserInput userInput, UserOutput userOutput) {
+    public Game(PlayersCollection players, WordReader reader, 
+            UserInput userInput, UserOutput userOutput) {
         this.players = players;
         this.reader = reader;
-        this.userInput = userInput;
-        this.userOutput = userOutput;
-        exit=false;
-        this.maxFails=5;
-    }
-    
-    public Game(PlayersCollection players, UserInput userInput, UserOutput userOutput) {
-        this.players = players;
         this.userInput = userInput;
         this.userOutput = userOutput;
         exit=false;
@@ -56,22 +54,22 @@ public class Game {
         turn.randomTurn();
     }
 
-    void play() throws IOException {
+    void play() throws IOException, Exception {
         
         do{
             userOutput.showMainMenu();
             OPTION_MENU OPTION = userInput.getMainMenuOptionSelected();
 
-            validateMainOption(OPTION);
+            executeMainOption(OPTION);
         } while(!exit);
     }
 
-    private void waitForLetters() {
+    private void tryToGuessWord() throws Exception {
         fails = maxFails;
         do{ 
             userOutput.showMenu();
             OPTION_MENU OPTION = userInput.getMenuOptionSelected();
-            validateCurrentOptions(OPTION);
+            executeCurrentOptions(OPTION);
             if (!currentWord.isNotCompleted())
                 userOutput.showMessage("You Won!");
         } while(fails>0 && currentWord.isNotCompleted());
@@ -82,39 +80,45 @@ public class Game {
             fails--;
     }
 
-    private void startToPlay() throws IOException {
+    public void startToPlay() throws IOException, Exception {
         Player currentPlayer = turn.getCurrentPlayer();
+        userOutput.showMessage("Insert word to guess: ");
         currentWord = reader.getWord();
-        waitForLetters();
+        tryToGuessWord();
         currentPlayer.incrementScore(currentWord.isCompleted());
     }
 
-    private void showScore() {
+    public void showScore() {
         for (int i = 0; i < players.getCount(); i++) {
             Player currentPlayer = players.getPlayer(i);
-            System.out.println("Player: " + currentPlayer +"has completed " + currentPlayer.getCompletedWords() + "words.");
+            userOutput.showMessage("Player: " + currentPlayer +" has completed " + 
+                    currentPlayer.getCompletedWords() + " words.");
+        }
+    }
+    //Open/Close
+    private void executeMainOption(OPTION_MENU OPTION) throws IOException, Exception {
+        Action mainAction;
+        try {
+            mainAction = ActionFactory.createAction(OPTION);
+            mainAction.execute(this);
+        } catch (OptionNoValidException ex) {
+            userOutput.showErrorMessage("wrong selected option!");
         }
     }
 
-    private void validateMainOption(OPTION_MENU OPTION) throws IOException {
-        switch(OPTION){
-            case PLAY: startToPlay(); break;
-            case SCORE: showScore(); break;
-            case EXIT: exit=true; break;
-            default: userOutput.showErrorMessage("wrong selected option!");
+    //Open/Close
+    private void executeCurrentOptions(OPTION_MENU OPTION) throws Exception {
+        Action mainAction;
+        try {
+            mainAction = ActionFactory.createAction(OPTION);
+            mainAction.execute(this);
+        } catch (OptionNoValidException ex) {
+            userOutput.showErrorMessage("wrong selected option!");
         }
     }
 
-    private void validateCurrentOptions(OPTION_MENU OPTION) {
-        switch(OPTION){
-            case CONTINUE: getNextCharacter(); break;
-            case STATISTICS: showStatistics(); break;
-            case EXIT: fails=0; break;
-            default: userOutput.showErrorMessage("wrong selected option!");
-        }
-    }
-
-    private void getNextCharacter() {
+    public void getNextCharacter() {
+        userOutput.showMessage("Try Char: ");
         char nextChar = userInput.getNextChar();
         boolean matches = currentWord.match(nextChar);
         setWrongLetter(matches);
@@ -122,11 +126,20 @@ public class Game {
             inputChars.add((Character)nextChar);
     }
 
-    private void showStatistics() {
+    public void showStatistics() {
+        userOutput.showMessage("Word: "+currentWord.showProgress());
         for (int i = 0; i < inputChars.size(); i++) {
-            System.out.println("Current mismatched letters: " + inputChars.get(i));
+            userOutput.showMessage("Current mismatched letters: " + inputChars.get(i));
         }
-        System.out.println("Amount of tries remaining: " + fails);
+        userOutput.showMessage("Amount of tries remaining: " + fails);
+    }
+
+    public void exit() {
+        exit=true;
+    }
+
+    public void surrender() {
+        fails=0;
     }
     
 }
